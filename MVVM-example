@@ -1,0 +1,71 @@
+                👦 Shinchan
+           "I want chocolate!"
+
+                     │
+                     ▼
+        ┌─────────────────────┐
+        │        VIEW         │
+        │  📱 iPhone Screen   │
+        │  SwiftUI / UIKit UI │
+        │  Button: Get Snack  │
+        └─────────────────────┘
+                     │
+                     ▼
+        ┌─────────────────────┐
+        │      VIEWMODEL      │
+        │  🧠 Shinchan's Mom  │
+        │  Logic / Decision   │
+        │  Checks snack data  │
+        └─────────────────────┘
+                     │
+                     ▼
+        ┌─────────────────────┐
+        │        MODEL        │
+        │   🧊 Fridge (Data)  │
+        │  { snack: chocolate │
+        │    biscuit }        │
+        └─────────────────────┘
+                     ▲
+                     │
+              Data returned
+                     │
+                     ▼
+        📱 View updates UI
+        "🍫 Chocolate Available!"
+
+
+------------Model (Fridge Data)--------------
+struct SnackModel {
+    let snackName = "Chocolate Biscuit"
+}
+
+
+-------------ViewModel (Mom Logic)------------
+class SnackViewModel {
+
+    let model = SnackModel()
+
+    func getSnack() -> String {
+        return "Snack: \(model.snackName)"
+    }
+}
+
+-------View (Shinchan's Phone Screen)-------------
+class SnackViewController: UIViewController {
+
+    let viewModel = SnackViewModel()
+
+    @IBAction func buttonTapped() {
+        label.text = viewModel.getSnack()
+    }
+}
+
+MVVM	Shinchan Story
+View	Shinchan using the phone
+ViewModel	Shinchan’s mom deciding snack
+Model	Fridge storing snacks
+
+So the rule is:
+
+[[[[[[[[[[[[[      Shinchan → Mom → Fridge    ]]]]]]]]]]
+ View     ViewModel   Model
